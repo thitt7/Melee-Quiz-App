@@ -1,0 +1,115 @@
+[
+    {
+        "category": null, 
+        "type": "Multiple Choice", 
+        "difficulty": null, 
+        "question": "How many playable characters are there in the game?", 
+        "correct_answer": "25",
+        "answers": [
+            "5",
+            "12",
+            "25",
+            "18"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Multiple Choice", 
+        "difficulty": null, 
+        "question": "How many total hours of vs battles does a single player need to unlock Mewtwo", 
+        "correct_answer": "20",
+        "answers": [
+            "5",
+            "10",
+            "20",
+            "50"
+        ]
+    },
+    {
+        "category": null, 
+        "type": null, 
+        "difficulty": null, 
+        "question": "Which trophy requires data from another game in order to unlock it?", 
+        "correct_answer": "Captain Olimar",
+        "answers": [
+            "Tom Nook",
+            "Alpha",
+            "Mr. Resetti",
+            "Captain Olimar"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Multiple Choice", 
+        "difficulty": null, 
+        "question": "Who is the only character from Smash 64 to not show up in the Melee intro video?", 
+        "correct_answer": "Luigi",
+        "answers": [
+            "Fox",
+            "Luigi",
+            "Jigglypuff",
+            "Captain Falcon"
+        ]
+    },
+    {
+        "category": "Multiple Choice", 
+        "type": null, 
+        "difficulty": null, 
+        "question": "Which character cannot charge their down smash when too close to the ledge?", 
+        "correct_answer": "Bowser",
+        "answers": [
+            "Ness",
+            "Samus",
+            "Roy",
+            "Bowser"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Multiple Choice", 
+        "difficulty": null, 
+        "question": "In 'Adventure Mode' (normal difficulty), who do you have to beat on the level 'Final Destination'?", 
+        "correct_answer": "Giga Bowser",
+        "answers": [
+            "Master Hand",
+            "Giga Bowser",
+            "Marth",
+            "Mewtwo"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Multiple Choice", 
+        "difficulty": null, 
+        "question": "How many 'Recover Hearts' do you get in 'All Star Mode'?", 
+        "correct_answer": "3",
+        "answers": [
+            "1",
+            "2",
+            "3",
+            "6"
+        ]
+    }, 
+    {
+        "category": null, 
+        "type": "True/False", 
+        "difficulty": null, 
+        "question": "Prior to the release of Super Smash Bros. Melee, no game in Nintendo's Fire Emblem series had ever received an official North American release.", 
+        "correct_answer": "True",
+        "answers": [
+            "True",
+            "False"
+        ]
+    }, 
+    {
+        "category": null, 
+        "type": "True/False", 
+        "difficulty": null, 
+        "question": "Super Smash Bros. Melee is the first game in the Super Smash Bros. series to be rated T (Teen).", 
+        "correct_answer": "True",
+        "answers": [
+            "True",
+            "False"
+        ]
+    }
+] 
