@@ -81,7 +81,7 @@ ul {
 li,
 button,
 input {
-  font-family: 'Merriweather Sans', sans-serif;
+  font-family: menuFont;
   display: block;
   font-size: 16px;
   color: #222;
@@ -110,7 +110,7 @@ button {
 /* Selects */
 /* class applies to select element itself, not a wrapper element */
 select {
-  font-family: 'Merriweather Sans', sans-serif;
+  font-family: menuFont;
   display: block;
   font-size: 16px;
   color: #222;
@@ -211,4 +211,8 @@ li.selected:not(correct) {
   height: 100vh;
   transform: translate(-50%, -50%);
   z-index: -3;
+}
+
+.off {
+  pointer-events: none;
 }

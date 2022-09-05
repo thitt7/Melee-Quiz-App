@@ -18,7 +18,6 @@ function Question() {
   const options = question.answers
   const answer = question.correct_answer
   const incorrect_answers = question.answers.filter((val) => val != answer)
-  console.log("correct: " + answer + "/n incorrect: " + incorrect_answers)
 
   const handleListItemClick = (event) => {
     setAnswerSelected(true)
@@ -50,12 +49,13 @@ function Question() {
     }
 
     if (option === answer) {
-      return `correct`
+      return `correct off`
     }
 
     if (option === selectedAnswer) {
-      return `selected`
+      return `selected off`
     }
+
   }
 
   if (!question) {

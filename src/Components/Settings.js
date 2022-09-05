@@ -6,7 +6,6 @@ function Settings () {
     const questionCategory = useSelector((state) => state.options.question_category)
     const questionType = useSelector((state) => state.options.question_type)
     const questionAmount = useSelector((state) => state.options.amount_of_questions)
-    const exampleText = useSelector((state) => state.text)
 
     const dispatch = useDispatch()
 
@@ -23,13 +22,6 @@ console.log(questionType)
     const handleQuestionNumChange = event => {
       dispatch({
         type: 'CHANGE_AMOUNT',
-        value: event.target.value
-      })
-    }
-
-    const handleTextChange = event => {
-      dispatch({
-        type: 'test',
         value: event.target.value
       })
     }
@@ -57,9 +49,6 @@ console.log(questionType)
                 <div>
                 <h2>Number of Questions:</h2>
                 <input type="number" onChange={handleQuestionNumChange} />
-                <h2>Test Text Box:</h2>
-                <input onChange={handleTextChange} />
-                <h3>Text Chosen: {exampleText}</h3>
               </div>
 
               <QuestionButton text="Show Me Your Moves!"/>
