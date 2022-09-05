@@ -56,21 +56,23 @@ const populateQuestions = () => {
 }
 
 /* parse questions from JSON into new object array, validate input for category, type, etc. */
-const questionSet = Object.values(questionArray).filter((val, i)=> {
+let questionSet = Object.values(questionArray).filter((val, i)=> {
   if (questionType == "All" && questionCategory == "All") {return true}
   else if (questionType == "All") {return val.category == questionCategory}
   else if (questionCategory == "All") {return val.type == questionType}
   else {return val.type == questionType && val.category == questionCategory}
 }
 );
-// console.log(questionSet)
+console.log(questionSet)
 
 /* Randomize Question Array */
-const shuffle = (array) => {
-  return array.sort(() => 0.5 - Math.random());
-};
+let shuffled = questionSet
+    .map(value => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value)
 
-
+/* Filter Randomized Selection by Number of Questions Selected */
+questionSet = shuffled.filter((val, i)=> i <= questionAmount - 1)
 
 dispatch ({
   type: 'SET_QUESTIONS', 
