@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import videoQuestion from './videoQuestion'
 
 function Question() {
   const [answerSelected, setAnswerSelected] = useState(false)
@@ -8,12 +9,11 @@ function Question() {
   
 
   const score = useSelector((state) => state.score)
-  const encodedQuestions = useSelector((state) => state.questions)
+  const questions = useSelector((state) => state.questions)
   const questionIndex = useSelector((state) => state.index)
 
   const dispatch = useDispatch()
 
-  const questions = encodedQuestions
   const question = questions[questionIndex]
   const options = question.answers
   const answer = question.correct_answer
@@ -48,6 +48,8 @@ function Question() {
       return ``;
     }
 
+
+    if (answerSelected) {
     if (option === answer) {
       return `correct off`
     }
@@ -55,6 +57,10 @@ function Question() {
     if (option === selectedAnswer) {
       return `selected off`
     }
+
+    else {return 'off'}
+
+  }
 
   }
 
@@ -66,6 +72,7 @@ function Question() {
     <div>
       <p>Question {questionIndex + 1}</p>
       <h3>{question.question}</h3>
+      {isVideo ? <videoQuestion/> : ''}
       <ul>
         {options.map((option, i) => (
           <li key={i} onClick={handleListItemClick} className={getClass(option)}>
