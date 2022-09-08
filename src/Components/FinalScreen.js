@@ -5,6 +5,10 @@ import FetchButton from './QuestionButton'
 
 function FinalScreen() {
   const score = useSelector((state) => state.score)
+  const questions = useSelector((state) => state.questions)
+  const FinalScore = Math.round((questions.length / score)*100)
+  console.log((questions / score)*100)
+  console.log(questions/score)
 
   const dispatch = useDispatch()
 
@@ -34,7 +38,7 @@ function FinalScreen() {
 
   return (
     <div>
-      <h3>Final Score: {score}</h3>
+      <h3>Final Score: {FinalScore + "%"}</h3>
       <button onClick={replay}>Try again</button>
       <FetchButton text="Fetch new questions" />
       <button onClick={settings}>Back to settings</button>

@@ -5,7 +5,7 @@ import videoQuestion from './videoQuestion'
 function Question() {
   const [answerSelected, setAnswerSelected] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [answers, setAnswers] = useState([])
+  const [isVideo, setIsVideo] = useState(false)
   
 
   const score = useSelector((state) => state.score)
