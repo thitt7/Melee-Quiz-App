@@ -8,8 +8,6 @@ This is a nostalgia fueled passion project built on React that revolves around o
 ![MeleeQuiz2](https://user-images.githubusercontent.com/39978624/191404387-99b767bd-54b6-45ee-9281-fb5e62f6b361.PNG)
 ![MeleeQuiz3](https://user-images.githubusercontent.com/39978624/191404370-7b0414e6-c969-4d90-8d0a-8a2d3f23b5a5.PNG)
 
-## Available Commands
-
 ## Built With
 
 - JavaScript
