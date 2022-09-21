@@ -21,11 +21,11 @@ This is a nostalgia fueled passion project built on React that revolves around o
 
 ## Future Updates
 
--Persistent Storage
--Question API for people to pull questions from
--Lifelines
--Leaderboard
--Timer
+- Persistent Storage
+- Question API for people to pull questions from
+- Lifelines
+- Leaderboard
+- Timer
 
 ## Author
 
