@@ -4,7 +4,9 @@ This is a nostalgia fueled passion project built on React that revolves around o
 
 ## Screenshots
 
-Coming Soon
+![MeleeQuiz](https://user-images.githubusercontent.com/39978624/191404381-d78b64bd-1982-4176-98f7-bec46d58ccbb.PNG)
+![MeleeQuiz2](https://user-images.githubusercontent.com/39978624/191404387-99b767bd-54b6-45ee-9281-fb5e62f6b361.PNG)
+![MeleeQuiz3](https://user-images.githubusercontent.com/39978624/191404370-7b0414e6-c969-4d90-8d0a-8a2d3f23b5a5.PNG)
 
 ## Available Commands
 
@@ -14,10 +16,16 @@ Coming Soon
 - ReactJS
 - Redux
 - HTML5
+- Sass
 - CSS3
-- Tailwind
 
 ## Future Updates
+
+-Persistent Storage
+-Question API for people to pull questions from
+-Lifelines
+-Leaderboard
+-Timer
 
 ## Author
 
