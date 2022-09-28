@@ -12,10 +12,11 @@ const initState = {
   questions: [],
   index: 0,
   score: 0,
-  text: 'default'
+  text: 'default',
+  isAnswered: false
 }
 
-const Reducer = (state = initState, action) => {
+const Reducer = (state = initState, action: any) => {
   switch (action.type) {
 
     case 'CHANGE_CATEGORY':
@@ -72,10 +73,10 @@ const Reducer = (state = initState, action) => {
         score: action.score,
       }
 
-      case 'test':
+      case 'SET_ANSWERED':
         return {
           ...state,
-          text: action.value
+          isAnswered: action.answered
         }
 
     default:

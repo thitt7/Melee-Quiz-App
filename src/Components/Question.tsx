@@ -1,26 +1,27 @@
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import videoQuestion from './videoQuestion'
+import VideoQuestion from './VideoQuestion'
 
 function Question() {
-  const [answerSelected, setAnswerSelected] = useState(false)
   const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [isVideo, setIsVideo] = useState(false)
-  
 
-  const score = useSelector((state) => state.score)
-  const questions = useSelector((state) => state.questions)
-  const questionIndex = useSelector((state) => state.index)
+  const score = useSelector((state: any) => state.score)
+  const questions = useSelector((state: any) => state.questions)
+  const questionIndex = useSelector((state: any) => state.index)
+  const answerSelected = useSelector((state: any) => state.isAnswered)
 
   const dispatch = useDispatch()
 
   const question = questions[questionIndex]
   const options = question.answers
   const answer = question.correct_answer
-  const incorrect_answers = question.answers.filter((val) => val != answer)
+  const incorrect_answers = question.answers.filter((val: object) => val != answer)
 
-  const handleListItemClick = (event) => {
-    setAnswerSelected(true)
+  const handleListItemClick = (event: any) => {
+    dispatch({
+      type: 'SET_ANSWERED',
+      answered: true,
+    })
     setSelectedAnswer(event.target.textContent)
 
     if (event.target.textContent === answer) {
@@ -30,20 +31,23 @@ function Question() {
       })
     }
 
-    if (questionIndex + 1 <= questions.length) {
+    if (question.type != "Guess That Player" && questionIndex + 1 <= questions.length) {
       setTimeout(() => {
-        setAnswerSelected(false)
+        dispatch({
+          type: 'SET_ANSWERED',
+          answered: false,
+        })
         setSelectedAnswer(null)
 
         dispatch({
           type: 'SET_INDEX',
           index: questionIndex + 1,
         })
-      }, 2500)
+      }, 5000)
     }
   }
 
-  const getClass = option => {
+  const getClass = (option: string) => {
     if (!answerSelected) {
       return ``;
     }
@@ -72,9 +76,9 @@ function Question() {
     <div>
       <p>Question {questionIndex + 1}</p>
       <h3>{question.question}</h3>
-      {isVideo ? <videoQuestion/> : ''}
+      {question.type=="Guess That Player" ? <VideoQuestion/> : ''}
       <ul>
-        {options.map((option, i) => (
+        {options.map((option: string, i: number) => (
           <li key={i} onClick={handleListItemClick} className={getClass(option)}>
             {option}
           </li>

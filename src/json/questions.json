@@ -111,5 +111,50 @@
             "True",
             "False"
         ]
+    },
+    {
+        "category": null, 
+        "type": "Guess That Player", 
+        "difficulty": null,
+        "stop": 12, 
+        "youtube_id": "-x1xVkWR73U",
+        "question": "Which captain Falcon Player is playing?", 
+        "correct_answer": "Wizzrobe",
+        "answers": [
+            "S2J",
+            "n0ne",
+            "Wizzrobe",
+            "SquidTheCat"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Guess That Player", 
+        "difficulty": null,
+        "stop": 18, 
+        "youtube_id": "ctYqblrnylw",
+        "question": "Which Falco Player is playing?", 
+        "correct_answer": "n0ne",
+        "answers": [
+            "Mang0",
+            "Ginger",
+            "n0ne",
+            "Squid"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Guess That Player", 
+        "difficulty": null,
+        "stop": 15, 
+        "youtube_id": "zj4aVg6TvR8",
+        "question": "Which captain Falcon Player is playing?", 
+        "correct_answer": "S2J",
+        "answers": [
+            "Wizzrobe",
+            "n0ne",
+            "Lord",
+            "S2J"
+        ]
     }
 ] 

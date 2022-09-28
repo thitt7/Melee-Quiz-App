@@ -6,9 +6,7 @@ import FetchButton from './QuestionButton'
 function FinalScreen() {
   const score = useSelector((state) => state.score)
   const questions = useSelector((state) => state.questions)
-  const FinalScore = Math.round((questions.length / score)*100)
-  console.log((questions / score)*100)
-  console.log(questions/score)
+  const FinalScore = Math.round((score / questions.length)*100)
 
   const dispatch = useDispatch()
 
