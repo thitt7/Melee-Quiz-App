@@ -14,7 +14,7 @@ export default function App() {
   const question = questions[questionIndex]
   const video_id = question.youtube_id
   const stopTime = question.stop
-  const [isPaused, setIsPaused] = useState(false);
+
 
     const params = {
     playerVars: {
@@ -42,13 +42,14 @@ export default function App() {
     }
   }
 
-
-  //get current time and video status in real time
-  useEffect(() => {
+  const questionInterval = () => {
     const interval = setInterval(async () => {
+      let stopTime2 = question.stop
+      console.log(stopTime2)
       if (videoElement && videoElement.target.getCurrentTime() > 0) {
         const elapsed_seconds = videoElement.target.getCurrentTime();
         let done = false
+        console.log(elapsed_seconds)
 
         if (elapsed_seconds >= (stopTime + 0.2))
         {
@@ -62,14 +63,17 @@ export default function App() {
           videoElement.target.seekTo(stopTime)
           videoElement.target.pauseVideo()
         }
-
+        done ? clearInterval(interval) : console.log("done")
 
       }
-    }, 200);
+    }, 200); }
 
-    return () => {
-      clearInterval(interval);
-    };
+  //get current time and video status in real time
+  useEffect(() => {
+
+    // return () => {
+    //   clearInterval(interval);
+    // };
   }, []);
 
   useEffect(() => {
@@ -81,7 +85,9 @@ export default function App() {
   }, [isAnswered]);
 
   const _onReady = (event: YouTubePlayer) => {
+    console.log("video loaded")
     videoElement = event;
+    questionInterval()
   };
 
   return (

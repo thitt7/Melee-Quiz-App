@@ -1,8 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
-import FetchButton from './QuestionButton'
-
 function FinalScreen() {
   const score = useSelector((state) => state.score)
   const questions = useSelector((state) => state.questions)
@@ -37,9 +35,8 @@ function FinalScreen() {
   return (
     <div>
       <h3>Final Score: {FinalScore + "%"}</h3>
-      <button onClick={replay}>Try again</button>
-      <FetchButton text="Fetch new questions" />
-      <button onClick={settings}>Back to settings</button>
+      <button onClick={replay}>Try Quiz Again</button>
+      <button onClick={settings}>Back to Home</button>
     </div>
   )
 }

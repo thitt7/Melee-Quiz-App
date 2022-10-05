@@ -82,8 +82,6 @@ dispatch ({
 
 }
 
-
-  // return <button onClick={handleQuery}>{props.text}</button>
   return <button onClick={populateQuestions}>{props.text}</button>
 }
 export default QuestionButton

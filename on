@@ -1,0 +1,15 @@
+[33mbb97856[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fixed videos, started TypeScript Conversion
+[33m5a84007[m Update README.md
+[33mcd82bc4[m Update README.md
+[33ma60c49c[m Update README.md
+[33m20d35fd[m fixed score calc, added video question support
+[33m9c72df8[m Merge branch 'main' of https://github.com/thitt7/Melee-Quiz-App
+[33m31820ea[m fixed score calculation
+[33md40395b[m Update README.md
+[33m00dbd6e[m Update README.md
+[33m465eb27[m started adding video embeds for GTP questions
+[33m3ceb76b[m Update README.md
+[33mc4584ed[m added randomization of selected questions
+[33m2c106bf[m added intangibility for answer buttons upon selection
+[33m2e24f69[m Update README.md
+[33m615a285[m Initial commit

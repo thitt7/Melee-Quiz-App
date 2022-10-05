@@ -6,6 +6,10 @@
   font-weight: bold;
 }
 
+:root {
+  --dark-mode-bg: #1e1e1e;;
+}
+
 body {
   font-family: menuFont;
   letter-spacing: .04em;
@@ -216,6 +220,25 @@ li.selected:not(correct) {
   pointer-events: none;
 }
 
+.options-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 100;
+}
+
+.options-button > button {
+  background: var(--dark-mode-bg);
+  font-family: menuFont;
+  font-size: 1em;
+  letter-spacing: .1em;
+  color: #fff;
+}
+
+.modal-form [class*="MuiTextField"] {
+  margin: 20px auto;
+}
+
 
 
 /*----Media Queries----*/
@@ -236,4 +259,11 @@ li.selected:not(correct) {
   }
 
   .app-container div {font-size: 35px;}
+}
+
+@media screen and (max-width: 780px) {
+  .options-button {
+    right: 50%;
+    transform: translate(50%);
+  }
 }

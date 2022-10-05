@@ -48,7 +48,7 @@ console.log(questionType)
               </div> */}
                 <div>
                 <h2>Number of Questions:</h2>
-                <input type="number" onChange={handleQuestionNumChange} />
+                <input type="number" min="0" onChange={handleQuestionNumChange} />
               </div>
 
               <QuestionButton text="Show Me Your Moves!"/>

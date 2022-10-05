@@ -9,6 +9,8 @@ const initState = {
     question_type: `Multiple Choice`,
     amount_of_questions: 5,
   },
+  questionTypes: ["Multiple Choice", "True/False", "Guess That Player"],
+  questionCategories: [],
   questions: [],
   index: 0,
   score: 0,
