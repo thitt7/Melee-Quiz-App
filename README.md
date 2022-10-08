@@ -10,19 +10,19 @@ This is a nostalgia fueled passion project built on React that revolves around o
 
 ## Built With
 
-- JavaScript
+- TypeScript + JavaScript
 - ReactJS
 - Redux
-- HTML5
+- HTML5/CSS3
 - Sass
-- CSS3
 
 ## Future Updates
 
 - Persistent Storage
-- Question API for people to pull questions from
+- Routing
 - Lifelines
-- Leaderboard
+- Scores/Leaderboard
+- Question API for people to pull questions from
 - Timer
 
 ## Author
