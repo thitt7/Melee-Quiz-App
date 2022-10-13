@@ -10,12 +10,16 @@ import DialogTitle from '@mui/material/DialogTitle'
 import MenuItem from '@mui/material/MenuItem'
 
 export default function FormModal(props: any) {
+  interface FormDataType {type:string, category: string, difficulty: string, question:string, correct_answer: string, answer2: string, answer3: string, answer4: string}
+
   const types = useSelector((state: any) => state.questionTypes)
   const categories = useSelector((state: any) => state.questionCategories)
   
   const [open, setOpen] = React.useState(false);
-  const [type, setType] = React.useState(types[0]);
-  const [category, setCategory] = React.useState(categories[0]);
+  const formData: FormDataType = {type:"", category: "", difficulty: "", question: "", correct_answer: "", answer2: "", answer3: "", answer4: ""}
+  const [responseBody, setResponseBody] = useState<FormDataType>(formData)
+
+  /* Form Handlers */
 
   const FormOpen = () => {
     setOpen(true);
@@ -26,13 +30,33 @@ export default function FormModal(props: any) {
     props.setOpened(false)
   };
 
-  const handleTypeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setType(event.target.value);
-  };
+  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = event.target
+    setResponseBody({...responseBody, [name]: value})
+  }
+  const submitHandler = (event: React.MouseEvent<HTMLElement>) => {
+      // FormClose()
+      console.log(responseBody)
+      fetch('https://m2ic13md4d.execute-api.us-east-2.amazonaws.com/Prod/submitForm', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(responseBody)
+      })
+      .then(async (res) => {
+        if (res.ok) {
+          const response = await res.json()
+        }
+      })
+      .then(data =>{
+        console.log(data)
+      })
+      .catch(error => {
 
-  const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCategory(event.target.value);
-  };
+      })
+  //Form submission happens here
+  }
 
   useEffect(() => {
     setOpen(props.open)
@@ -45,14 +69,15 @@ export default function FormModal(props: any) {
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Just like the melee community itself, this site depends upon the contributions of fans to provide challenging questions and keep things interesting. Please submit any questions, no matter the difficulty, that you
+            Much like the melee community itself, this site depends upon the contributions of fans to provide challenging questions and keep things interesting.
+             Please submit any questions you can think of and they will be approved and added to the game!
           </DialogContentText>
-          <TextField
-          id="outlined-select-category"
+          <TextField onChange={(e)=>inputChangeHandler(e)}
+          id="questionType"
+          name="type"
           select
           label="Select Type"
-          value={type}
-          onChange={handleTypeChange}
+          value={types[0]}
           helperText="Please select question type"
         >
           {types.map((option: string, i: number) => (
@@ -61,36 +86,59 @@ export default function FormModal(props: any) {
             </MenuItem>
           ))}
         </TextField>
-          <TextField
+        <TextField onChange={(e)=>inputChangeHandler(e)}
             autoFocus
             margin="dense"
-            id="name"
-            label="Name"
+            id="question"
+            name="question"
+            label="Question"
             type="text"
             fullWidth
-            variant="outlined"
+            variant="standard"
           />
-          <TextField
+          <TextField onChange={(e)=>inputChangeHandler(e)}
             autoFocus
             margin="dense"
-            id="email"
-            label="Email Address"
+            id="correctAnswer"
+            name="correct_answer"
+            label="Correct Answer"
             type="email"
             fullWidth
             variant="standard"
           />
-          <TextField
+          <TextField onChange={(e)=>inputChangeHandler(e)}
             autoFocus
             margin="dense"
-            id="question"
-            label="Question"
+            id="answer2"
+            name="answer2"
+            label="Answer 2"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+          <TextField onChange={(e)=>inputChangeHandler(e)}
+            autoFocus
+            margin="dense"
+            id="answer3"
+            name="answer3"
+            label="Answer 3"
+            type="text"
+            fullWidth
+            variant="standard"
+          />
+          <TextField onChange={(e)=>inputChangeHandler(e)}
+            autoFocus
+            margin="dense"
+            id="answer4"
+            name="answer4"
+            label="Answer 4"
             type="text"
             fullWidth
             variant="standard"
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={FormClose}>Submit</Button>
+          <Button onClick={submitHandler}>Submit</Button>
         </DialogActions>
       </Dialog>
     </div>
