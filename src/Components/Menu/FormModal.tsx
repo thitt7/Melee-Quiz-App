@@ -36,7 +36,6 @@ export default function FormModal(props: any) {
     formData = {...formData, [name]: value}
   }
   const submitHandler = (event: React.MouseEvent<HTMLElement>) => {
-      // FormClose()
       let answersArr: string[] = []
       for (let i in formData) {
         i == "correct_answer" ? answersArr.push(formData[i]) : console.log("continue")
@@ -81,15 +80,22 @@ export default function FormModal(props: any) {
   return (
     <div>
       <Dialog open={open} onClose={FormClose}>
-        <DialogTitle>Suggestions
+        <DialogTitle align='center'
+        sx={{  }}
+        >Suggestions
         </DialogTitle>
         <DialogContent>
-          <DialogContentText>
+          <DialogContentText
+          align='center'
+          sx={{marginBottom: 2 }}
+          >
             Much like the melee community itself, this site depends upon the contributions of fans to provide challenging questions and keep things interesting.
              Please submit any questions you can think of and they will be approved and added to the game!
           </DialogContentText>
           <TextField onChange={(e)=>inputChangeHandler(e)}
           required
+          autoFocus
+          margin="dense"
           id="questionType"
           name="type"
           select
@@ -105,7 +111,6 @@ export default function FormModal(props: any) {
         </TextField>
         <TextField onChange={(e)=>inputChangeHandler(e)}
           required
-            autoFocus
             margin="dense"
             id="question"
             name="question"
@@ -116,7 +121,6 @@ export default function FormModal(props: any) {
           />
           <TextField onChange={(e)=>inputChangeHandler(e)}
             required
-            autoFocus
             margin="dense"
             id="correctAnswer"
             name="correct_answer"
@@ -127,7 +131,6 @@ export default function FormModal(props: any) {
           />
           <TextField onChange={(e)=>inputChangeHandler(e)}
             required
-            autoFocus
             margin="dense"
             id="answer2"
             name="answer2"
@@ -138,7 +141,6 @@ export default function FormModal(props: any) {
           />
           <TextField onChange={(e)=>inputChangeHandler(e)}
             required
-            autoFocus
             margin="dense"
             id="answer3"
             name="answer3"
@@ -149,7 +151,6 @@ export default function FormModal(props: any) {
           />
           <TextField onChange={(e)=>inputChangeHandler(e)}
             required
-            autoFocus
             margin="dense"
             id="answer4"
             name="answer4"

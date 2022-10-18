@@ -6,7 +6,7 @@ const initState = {
     loading: false,
     question_category: `All`,
     question_difficulty: ``,
-    question_type: `Multiple Choice`,
+    question_type: `All`,
     amount_of_questions: 10,
   },
   questionTypes: ["Multiple Choice", "True/False", "Guess That Player"],

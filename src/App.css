@@ -20,7 +20,7 @@ body {
   background-attachment: fixed;
   background-size: cover;
   overflow: hidden;
-  cursor: url('images/cursor_pointer.png'), auto;
+  /* cursor: url('images/cursor_pointer.png'), auto; */
 }
 
 h1,
@@ -48,7 +48,6 @@ h2 {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  cursor: url('images/cursor_pointer.png'), auto;
 }
 
 .App-header {
@@ -78,7 +77,7 @@ h2 {
 }
 
 .app-container h3:first-of-type {
-  margin: 0;
+  margin: 25px 0 0;
 }
 
 .app-container > div {
@@ -298,6 +297,9 @@ li.selected:not(correct) {
   margin: 20px auto;
 }
 
+.MuiDialog-container * {
+  font-family: menuFont !important;
+}
 
 
 /*----Media Queries----*/

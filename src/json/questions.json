@@ -16,7 +16,7 @@
         "category": null, 
         "type": "Multiple Choice", 
         "difficulty": null, 
-        "question": "How many total hours of vs battles does a single player need to unlock Mewtwo", 
+        "question": "How many characters in total are represented on the Melee roster from the Pokémon franchise?", 
         "correct_answer": "4",
         "answers": [
             "1",
@@ -29,7 +29,7 @@
         "category": null, 
         "type": "Multiple Choice", 
         "difficulty": null, 
-        "question": "How many characters in total are represented on the Melee roster from the Pokémon franchise?", 
+        "question": "How many total hours of vs battles does a single player need to unlock Mewtwo", 
         "correct_answer": "20",
         "answers": [
             "5",
