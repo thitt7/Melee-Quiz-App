@@ -10,14 +10,15 @@ import DialogTitle from '@mui/material/DialogTitle'
 import MenuItem from '@mui/material/MenuItem'
 
 export default function FormModal(props: any) {
-  interface FormDataType {type:string, category: string, difficulty: string, question:string, correct_answer: string, answer2: string, answer3: string, answer4: string}
+  // interface FormDataType {type:string, category: string, difficulty: string, question:string, correct_answer: string, answer2: string, answer3: string, answer4: string}
 
   const types = useSelector((state: any) => state.questionTypes)
   const categories = useSelector((state: any) => state.questionCategories)
   
   const [open, setOpen] = React.useState(false);
-  const formData: FormDataType = {type:"", category: "", difficulty: "", question: "", correct_answer: "", answer2: "", answer3: "", answer4: ""}
-  const [responseBody, setResponseBody] = useState<FormDataType>(formData)
+  // let formData = {type:"", category: "", difficulty: "", question: "", correct_answer: "", answer2: "", answer3: "", answer4: ""}
+  let formData: any = {type: "Multiple Choice", category: "", difficulty: ""}
+  const [responseBody, setResponseBody] = useState(formData)
 
   /* Form Handlers */
 
@@ -31,22 +32,35 @@ export default function FormModal(props: any) {
   };
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {name, value} = event.target
-    setResponseBody({...responseBody, [name]: value})
+    let {name, value} = event.target
+    formData = {...formData, [name]: value}
   }
   const submitHandler = (event: React.MouseEvent<HTMLElement>) => {
       // FormClose()
-      console.log(responseBody)
+      let answersArr: string[] = []
+      for (let i in formData) {
+        i == "correct_answer" ? answersArr.push(formData[i]) : console.log("continue")
+        if (i.match(/^answer/)) {
+          answersArr.push(formData[i])
+          delete formData[i]
+        }
+      }
+      formData = {...formData, answers: answersArr}
+      console.log(formData)
+      setResponseBody({...formData})
+
       fetch('https://m2ic13md4d.execute-api.us-east-2.amazonaws.com/Prod/submitForm', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(responseBody)
+        body: JSON.stringify(formData)
       })
-      .then(async (res) => {
+      .then( res => {
+        console.log(res)
         if (res.ok) {
-          const response = await res.json()
+          // const response = await res.json()
+          FormClose()
         }
       })
       .then(data =>{
@@ -55,7 +69,9 @@ export default function FormModal(props: any) {
       .catch(error => {
 
       })
-  //Form submission happens here
+
+      console.log(responseBody)
+ 
   }
 
   useEffect(() => {
@@ -73,6 +89,7 @@ export default function FormModal(props: any) {
              Please submit any questions you can think of and they will be approved and added to the game!
           </DialogContentText>
           <TextField onChange={(e)=>inputChangeHandler(e)}
+          required
           id="questionType"
           name="type"
           select
@@ -87,6 +104,7 @@ export default function FormModal(props: any) {
           ))}
         </TextField>
         <TextField onChange={(e)=>inputChangeHandler(e)}
+          required
             autoFocus
             margin="dense"
             id="question"
@@ -97,6 +115,7 @@ export default function FormModal(props: any) {
             variant="standard"
           />
           <TextField onChange={(e)=>inputChangeHandler(e)}
+            required
             autoFocus
             margin="dense"
             id="correctAnswer"
@@ -107,6 +126,7 @@ export default function FormModal(props: any) {
             variant="standard"
           />
           <TextField onChange={(e)=>inputChangeHandler(e)}
+            required
             autoFocus
             margin="dense"
             id="answer2"
@@ -117,6 +137,7 @@ export default function FormModal(props: any) {
             variant="standard"
           />
           <TextField onChange={(e)=>inputChangeHandler(e)}
+            required
             autoFocus
             margin="dense"
             id="answer3"
@@ -127,6 +148,7 @@ export default function FormModal(props: any) {
             variant="standard"
           />
           <TextField onChange={(e)=>inputChangeHandler(e)}
+            required
             autoFocus
             margin="dense"
             id="answer4"

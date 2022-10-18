@@ -43,7 +43,7 @@ function Question() {
           type: 'SET_INDEX',
           index: questionIndex + 1,
         })
-      }, 5000)
+      }, 3000)
     }
   }
 
@@ -74,10 +74,10 @@ function Question() {
 
   return (
     <div>
-      <p>Question {questionIndex + 1}</p>
+      <h3>Question {questionIndex + 1}</h3>
       <h3>{question.question}</h3>
       {question.type=="Guess That Player" ? <VideoQuestion/> : ''}
-      <ul>
+      <ul className="answers">
         {options.map((option: string, i: number) => (
           <li key={i} onClick={handleListItemClick} className={getClass(option)}>
             {option}

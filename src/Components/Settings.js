@@ -17,8 +17,6 @@ function Settings () {
       })
     }
 
-console.log(questionType)
-
     const handleQuestionNumChange = event => {
       dispatch({
         type: 'CHANGE_AMOUNT',

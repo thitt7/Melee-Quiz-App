@@ -45,11 +45,9 @@ export default function App() {
   const questionInterval = () => {
     const interval = setInterval(async () => {
       let stopTime2 = question.stop
-      console.log(stopTime2)
       if (videoElement && videoElement.target.getCurrentTime() > 0) {
         const elapsed_seconds = videoElement.target.getCurrentTime();
         let done = false
-        console.log(elapsed_seconds)
 
         if (elapsed_seconds >= (stopTime + 0.2))
         {
@@ -63,7 +61,7 @@ export default function App() {
           videoElement.target.seekTo(stopTime)
           videoElement.target.pauseVideo()
         }
-        done ? clearInterval(interval) : console.log("done")
+        done ? clearInterval(interval) : console.log("not done")
 
       }
     }, 200); }
@@ -78,20 +76,18 @@ export default function App() {
 
   useEffect(() => {
     if (isAnswered == true) {
-    console.log("Question Has Been Answered!")
     videoElement.target.seekTo(stopTime + 0.5)
     videoElement.target.playVideo()
     }
   }, [isAnswered]);
 
   const _onReady = (event: YouTubePlayer) => {
-    console.log("video loaded")
     videoElement = event;
     questionInterval()
   };
 
   return (
-    <div className="video">
+    <div className="video-question">
       <YouTube videoId={video_id} opts={params} onReady={_onReady} onStateChange={checkState}/>
     </div>
   );

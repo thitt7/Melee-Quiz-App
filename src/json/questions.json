@@ -17,6 +17,19 @@
         "type": "Multiple Choice", 
         "difficulty": null, 
         "question": "How many total hours of vs battles does a single player need to unlock Mewtwo", 
+        "correct_answer": "4",
+        "answers": [
+            "1",
+            "2",
+            "4",
+            "5"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Multiple Choice", 
+        "difficulty": null, 
+        "question": "How many characters in total are represented on the Melee roster from the Pokémon franchise?", 
         "correct_answer": "20",
         "answers": [
             "5",
@@ -27,7 +40,33 @@
     },
     {
         "category": null, 
-        "type": null, 
+        "type": "Multiple Choice", 
+        "difficulty": null, 
+        "question": "In which stage do you fight the Wire Frames?", 
+        "correct_answer": "Battlefield",
+        "answers": [
+            "Great Bay",
+            "Final Destination",
+            "Battlefield",
+            "Fourside"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Multiple Choice", 
+        "difficulty": null, 
+        "question": "Which of these stages is not a Past Stage in Super Smash Bros. Melee?", 
+        "correct_answer": "Hyrule Temple",
+        "answers": [
+            "Dream Land",
+            "Hyrule Temple",
+            "Yoshi's Island",
+            "Kongo Jungle"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Multiple Choice", 
         "difficulty": null, 
         "question": "Which trophy requires data from another game in order to unlock it?", 
         "correct_answer": "Captain Olimar",
@@ -52,8 +91,8 @@
         ]
     },
     {
-        "category": "Multiple Choice", 
-        "type": null, 
+        "category": null, 
+        "type": "Multiple Choice", 
         "difficulty": null, 
         "question": "Which character cannot charge their down smash when too close to the ledge?", 
         "correct_answer": "Ness",
@@ -146,15 +185,75 @@
         "category": null, 
         "type": "Guess That Player", 
         "difficulty": null,
-        "stop": 15, 
-        "youtube_id": "zj4aVg6TvR8",
-        "question": "Which captain Falcon Player is playing?", 
-        "correct_answer": "S2J",
+        "stop": 29, 
+        "youtube_id": "aCCf-nDAtJg",
+        "question": "Which (grey) Falcon Player is playing?", 
+        "correct_answer": "Lord",
         "answers": [
-            "Wizzrobe",
-            "n0ne",
-            "Lord",
-            "S2J"
+            "S2J",
+            "Jeapie",
+            "Gahtzu",
+            "Lord"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Guess That Player", 
+        "difficulty": null,
+        "stop": 16, 
+        "youtube_id": "vrOdzYh8OL4",
+        "question": "Which Marth Player is playing?", 
+        "correct_answer": "Zain",
+        "answers": [
+            "KoDoRiN",
+            "Zain",
+            "Mew2King",
+            "Fendrick Lamar"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Guess That Player", 
+        "difficulty": null,
+        "stop": 18, 
+        "youtube_id": "D60WKVgRb64",
+        "question": "Which Luigi Player is playing?", 
+        "correct_answer": "Eddie Mexico",
+        "answers": [
+            "Abate",
+            "Ilovebagelz",
+            "LuigiKid",
+            "Eddie Mexico"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Guess That Player", 
+        "difficulty": null,
+        "stop": 23, 
+        "youtube_id": "EAJU_5QhHrA",
+        "question": "Which Fox Player is playing?", 
+        "correct_answer": "Crush",
+        "answers": [
+            "Hax$",
+            "Mang0",
+            "Crush",
+            "Moky"
+        ]
+    },
+    {
+        "category": null, 
+        "type": "Guess That Player", 
+        "difficulty": null,
+        "stop": 16, 
+        "youtube_id": "cMYcEIMvEm4",
+        "question": "Which Link Player is playing?", 
+        "correct_answer": "Savestate",
+        "answers": [
+            "Savestate",
+            "Axe",
+            "Aether",
+            "Tang"
         ]
     }
 ] 

@@ -63,7 +63,6 @@ let questionSet = Object.values(questionArray).filter((val, i)=> {
   else {return val.type == questionType && val.category == questionCategory}
 }
 );
-console.log(questionSet)
 
 /* Randomize Question Array */
 let shuffled = questionSet
