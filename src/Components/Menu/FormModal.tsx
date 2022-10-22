@@ -1,5 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import Collapse from '@mui/material/Collapse'
+import Alert from '@mui/material/Alert'
+import IconButton from '@mui/material/IconButton'
+import CloseIcon from '@mui/icons-material/Close'
 import Button from '@mui/material/Button'
 import TextField from '@mui/material/TextField'
 import Dialog from '@mui/material/Dialog'
@@ -15,62 +19,91 @@ export default function FormModal(props: any) {
   const types = useSelector((state: any) => state.questionTypes)
   const categories = useSelector((state: any) => state.questionCategories)
   
-  const [open, setOpen] = React.useState(false);
-  // let formData = {type:"", category: "", difficulty: "", question: "", correct_answer: "", answer2: "", answer3: "", answer4: ""}
-  let formData: any = {type: "Multiple Choice", category: "", difficulty: ""}
-  const [responseBody, setResponseBody] = useState(formData)
+  const [open, setOpen] = useState(false)
+  const [alert, setAlert] = useState(false)
+  
+  let additionalProps = {category: "", difficulty: ""}
+  const [formData, setFormData]: any = React.useState({type: "", question: "", correct_answer: "", answer2: "", answer3: "", answer4: ""})
 
   /* Form Handlers */
 
   const FormOpen = () => {
-    setOpen(true);
-  };
+    setOpen(true)
+  }
 
   const FormClose = () => {
     setOpen(false)
     props.setOpened(false)
-  };
+  }
+
+  const removeProp = (property: any) => {
+    setFormData ((current: any) => {
+      let copy = {...current}
+      console.log(current)
+      delete copy[property]
+      console.log(copy)
+      // return copy
+    
+    })
+  }
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     let {name, value} = event.target
-    formData = {...formData, [name]: value}
+     setFormData({...formData, [name]: value})
   }
   const submitHandler = (event: React.MouseEvent<HTMLElement>) => {
+    
+      /* Check if at least one field is empty */
+      const isEmpty = Object.values(formData).some(x => x === null || x === '')
+      console.log(formData)
+      console.log(isEmpty)
+      if (isEmpty) {
+        setAlert(true)
+        return
+      }
+      
+
+      if (!isEmpty) {
+      /* Reformat Form Data */
       let answersArr: string[] = []
       for (let i in formData) {
-        i == "correct_answer" ? answersArr.push(formData[i]) : console.log("continue")
-        if (i.match(/^answer/)) {
+        if (i == "correct_answer") {
+        answersArr.push(formData[i])
+        continue
+        }
+        else if (i.match(/^answer/)) {
+          console.log("entered regex if statement")
           answersArr.push(formData[i])
-          delete formData[i]
+          removeProp(i)
         }
+        console.log(formData)
       }
-      formData = {...formData, answers: answersArr}
+      setFormData({...additionalProps, ...formData, answers: answersArr})
+      
       console.log(formData)
-      setResponseBody({...formData})
+      console.log(isEmpty)
 
-      fetch('https://m2ic13md4d.execute-api.us-east-2.amazonaws.com/Prod/submitForm', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
-      .then( res => {
-        console.log(res)
-        if (res.ok) {
-          // const response = await res.json()
-          FormClose()
-        }
-      })
-      .then(data =>{
-        console.log(data)
-      })
-      .catch(error => {
+      // fetch('https://m2ic13md4d.execute-api.us-east-2.amazonaws.com/Prod/submitForm', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify(formData)
+      // })
+      // .then( res => {
+      //   console.log(res)
+      //   if (res.ok) {
+      //     // const response = await res.json()
+      //     FormClose()
+      //   }
+      // })
+      // .then(data =>{
+      //   console.log(data)
+      // })
+      // .catch(error => {
 
-      })
-
-      console.log(responseBody)
- 
+      // })
+    }
   }
 
   useEffect(() => {
@@ -80,6 +113,28 @@ export default function FormModal(props: any) {
   return (
     <div>
       <Dialog open={open} onClose={FormClose}>
+      <Collapse in={alert}>
+      <Alert
+          severity="error"
+          action={
+            <IconButton
+              sx={{marginLeft: 0}}
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={() => {
+                setAlert(false);
+              }}
+            >
+              <CloseIcon 
+              sx={{marginLeft: 0}}
+              fontSize="inherit" />
+            </IconButton>
+          }
+          sx={{ mb: 2 }}
+        >
+          All fields are required.
+        </Alert></Collapse>
         <DialogTitle align='center'
         sx={{  }}
         >Suggestions
@@ -87,20 +142,17 @@ export default function FormModal(props: any) {
         <DialogContent>
           <DialogContentText
           align='center'
-          sx={{marginBottom: 2 }}
+          sx={{marginBottom: 4 }}
           >
             Much like the melee community itself, this site depends upon the contributions of fans to provide challenging questions and keep things interesting.
              Please submit any questions you can think of and they will be approved and added to the game!
           </DialogContentText>
           <TextField onChange={(e)=>inputChangeHandler(e)}
           required
-          autoFocus
-          margin="dense"
           id="questionType"
           name="type"
           select
           label="Select Type"
-          value={types[0]}
           helperText="Please select question type"
         >
           {types.map((option: string, i: number) => (

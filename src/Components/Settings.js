@@ -4,6 +4,7 @@ import QuestionButton from './QuestionButton'
 
 function Settings () {
     const questionCategory = useSelector((state) => state.options.question_category)
+    const types = useSelector((state) => state.questionTypes)
     const questionType = useSelector((state) => state.options.question_type)
     const questionAmount = useSelector((state) => state.options.amount_of_questions)
 
@@ -29,10 +30,11 @@ function Settings () {
               <div>
                 <h2>Select Game Type:</h2>
                 <select onChange={handleGameTypeChange}>
-                  <option>Multiple Choice</option>
-                  <option>True/False</option>
-                  <option>Guess That Player</option>
-                  <option>All</option>
+                {types.map((option, i) => (
+                <option key={i} value={option}>
+                {option}
+                </option>
+                ))}
                 </select>
               </div>
               {/* <div>

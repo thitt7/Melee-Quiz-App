@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import YouTube, {YouTubePlayer} from 'react-youtube'
 
-let videoElement: YouTubePlayer = null;
+let videoElement: YouTubePlayer = null
 
 export default function App() {
   const questions = useSelector((state: any) => state.questions)
@@ -23,7 +23,7 @@ export default function App() {
       controls: 0, 
       disablekb: 1
     },
-  };
+  }
 
   /* Advance to Next Question Upon Video Completion */
 
@@ -90,5 +90,5 @@ export default function App() {
     <div className="video-question">
       <YouTube videoId={video_id} opts={params} onReady={_onReady} onStateChange={checkState}/>
     </div>
-  );
+  )
 }

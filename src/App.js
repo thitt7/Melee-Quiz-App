@@ -5,6 +5,7 @@ import Settings from './Components/Settings'
 import Question from './Components/Question'
 import FinalScreen from './Components/FinalScreen'
 import OptionsMenu from './Components/Menu/Options'
+import VideoBackground from './Components/VideoBackground';
 
 import './App.css'
 
@@ -25,13 +26,12 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
-    <div className="vid-container">
-    <iframe src="https://www.youtube.com/embed/06tTwaaxbRc?controls=0&autoplay=1&mute=1&playlist=06tTwaaxbRc&loop=1"></iframe>
-    </div>
+    <VideoBackground/>
     <OptionsMenu/>
     <div className="App">
       <div className="app-container">{component}</div>
     </div>
+    <div className="mobile-bar"/>
     </ThemeProvider>
   )
 }

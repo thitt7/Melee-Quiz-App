@@ -254,20 +254,21 @@ li.selected:not(correct) {
 }
 
 /* Video Container */
-.vid-container {
-  width: 100vw;
-  height: 100vh;
-  position: relative;
+.vid-container > div {
+  position: fixed;
+  background: #000;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -99;
 }
 
 .vid-container iframe {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100vw;
-  height: 100vh;
-  transform: translate(-50%, -50%);
-  z-index: -3;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: -99;
 }
 
 .off {
@@ -293,14 +294,15 @@ li.selected:not(correct) {
   color: #fff;
 }
 
-.modal-form [class*="MuiTextField"] {
-  margin: 20px auto;
-}
+/* Mui Additional Styles */
 
 .MuiDialog-container * {
   font-family: menuFont !important;
 }
 
+[class^="MuiAlert-message"] {margin: auto;}
+
+[class^="MuiCollapse"] [class^="MuiAlert-action"] {margin-left: 0;}
 
 /*----Media Queries----*/
 @media screen and (min-width: 1500px) {
@@ -341,4 +343,46 @@ li.selected:not(correct) {
   .app-container {
     width: 100%;
   }
+
+  h3 {
+    line-height: 1.75;
+  }
+}
+
+@media (min-aspect-ratio: 16 / 9) {
+  .vid-container > div {
+    height: 300%;
+    top: -100%;
+  }
+}
+
+/* @media (max-aspect-ratio: 16 / 9) {
+  .vid-container > div {
+    width: 300%;
+    left: -100%;
+  }
+} */
+
+@media (max-aspect-ratio: 16 / 9) {
+  .vid-container > div {
+    width: 350%;
+    left: -125%;
+  }
+}
+
+/* @media screen and (max-width: 400px) {
+  .vid-container > div {
+    width: 350%;
+    left: -125%;
+  }
+} */
+
+.mobile-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: var(--dark-mode-bg);
+  width: 100%;
+  height: 5vh;
+  opacity: .85;
 }
