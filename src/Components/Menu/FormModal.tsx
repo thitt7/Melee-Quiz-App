@@ -20,10 +20,13 @@ export default function FormModal(props: any) {
   const categories = useSelector((state: any) => state.questionCategories)
   
   const [open, setOpen] = useState(false)
+  const [alertStatus, setAlertStatus] = useState("error")
   const [alert, setAlert] = useState(false)
   
   let additionalProps = {category: "", difficulty: ""}
-  const [formData, setFormData]: any = React.useState({type: "", question: "", correct_answer: "", answer2: "", answer3: "", answer4: ""})
+  const [formData, setFormData]: any = useState({type: "", question: "", correct_answer: "", answer2: ""})
+
+  console.log("state on render is: " + JSON.stringify(formData))
 
   /* Form Handlers */
 
@@ -33,23 +36,21 @@ export default function FormModal(props: any) {
 
   const FormClose = () => {
     setOpen(false)
-    props.setOpened(false)
+    props.setFormOpened(false)
   }
 
   const removeProp = (property: any) => {
     setFormData ((current: any) => {
       let copy = {...current}
-      console.log(current)
       delete copy[property]
-      console.log(copy)
-      // return copy
-    
+      return {...copy}
     })
   }
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     let {name, value} = event.target
      setFormData({...formData, [name]: value})
+     if (formData.type == "Multiple Choice") {setFormData({...formData,  answer3: "", answer4: ""})}
   }
   const submitHandler = (event: React.MouseEvent<HTMLElement>) => {
     
@@ -61,7 +62,6 @@ export default function FormModal(props: any) {
         setAlert(true)
         return
       }
-      
 
       if (!isEmpty) {
       /* Reformat Form Data */
@@ -76,33 +76,34 @@ export default function FormModal(props: any) {
           answersArr.push(formData[i])
           removeProp(i)
         }
-        console.log(formData)
       }
-      setFormData({...additionalProps, ...formData, answers: answersArr})
-      
-      console.log(formData)
-      console.log(isEmpty)
+      setFormData( (current: any) => {
+        return {...additionalProps, ...current, answers: answersArr}
+      })
 
-      // fetch('https://m2ic13md4d.execute-api.us-east-2.amazonaws.com/Prod/submitForm', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify(formData)
-      // })
-      // .then( res => {
-      //   console.log(res)
-      //   if (res.ok) {
-      //     // const response = await res.json()
-      //     FormClose()
-      //   }
-      // })
-      // .then(data =>{
-      //   console.log(data)
-      // })
-      // .catch(error => {
+      setAlertStatus("success")
+      setAlert(true)
 
-      // })
+      fetch('https://m2ic13md4d.execute-api.us-east-2.amazonaws.com/Prod/submitForm', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      })
+      .then( res => {
+        console.log(res)
+        if (res.ok) {
+          // const response = await res.json()
+          FormClose()
+        }
+      })
+      .then(data =>{
+        console.log(data)
+      })
+      .catch(error => {
+
+      })
     }
   }
 
@@ -115,7 +116,7 @@ export default function FormModal(props: any) {
       <Dialog open={open} onClose={FormClose}>
       <Collapse in={alert}>
       <Alert
-          severity="error"
+          severity={alertStatus == "success" ? "success" : "error"}
           action={
             <IconButton
               sx={{marginLeft: 0}}
@@ -133,19 +134,19 @@ export default function FormModal(props: any) {
           }
           sx={{ mb: 2 }}
         >
-          All fields are required.
+          {alertStatus == "success" ? "Thank you for your submission!" : "All fields are required!"}
         </Alert></Collapse>
         <DialogTitle align='center'
         sx={{  }}
-        >Suggestions
+        >Submit A Question
         </DialogTitle>
         <DialogContent>
           <DialogContentText
           align='center'
           sx={{marginBottom: 4 }}
           >
-            Much like the melee community itself, this site depends upon the contributions of fans to provide challenging questions and keep things interesting.
-             Please submit any questions you can think of and they will be approved and added to the game!
+            Much like the Melee community itself, this project depends on the contributions of fans to provide stimulating questions and keep things interesting.
+             Please submit any questions, no matter how obscure or difficult, and they will be reviewed and added to the game!
           </DialogContentText>
           <TextField onChange={(e)=>inputChangeHandler(e)}
           required
@@ -155,7 +156,7 @@ export default function FormModal(props: any) {
           label="Select Type"
           helperText="Please select question type"
         >
-          {types.map((option: string, i: number) => (
+          {types.filter((filtered: string) => filtered != "Guess That Player").map((option: string, i: number) => (
             <MenuItem key={i} value={option}>
               {option}
             </MenuItem>
@@ -191,6 +192,8 @@ export default function FormModal(props: any) {
             fullWidth
             variant="standard"
           />
+          {formData.type == "Multiple Choice" ?
+          <div>
           <TextField onChange={(e)=>inputChangeHandler(e)}
             required
             margin="dense"
@@ -210,7 +213,7 @@ export default function FormModal(props: any) {
             type="text"
             fullWidth
             variant="standard"
-          />
+          /></div> : ''}
         </DialogContent>
         <DialogActions>
           <Button onClick={submitHandler}>Submit</Button>

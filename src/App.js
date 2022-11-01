@@ -7,7 +7,7 @@ import FinalScreen from './Components/FinalScreen'
 import OptionsMenu from './Components/Menu/Options'
 import VideoBackground from './Components/VideoBackground';
 
-import './App.css'
+import './app.scss'
 
 function App() {
   const darkTheme = createTheme({ palette: { mode: 'dark', }, });
@@ -31,7 +31,6 @@ function App() {
     <div className="App">
       <div className="app-container">{component}</div>
     </div>
-    <div className="mobile-bar"/>
     </ThemeProvider>
   )
 }

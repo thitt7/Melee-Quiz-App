@@ -7,7 +7,8 @@
 }
 
 :root {
-  --dark-mode-bg: #1e1e1e;;
+  --dark-mode-bg:#1e1e1e;
+  --medium-grey:#7f7f7f;
 }
 
 body {
@@ -20,11 +21,20 @@ body {
   background-attachment: fixed;
   background-size: cover;
   overflow: hidden;
+
   /* cursor: url('images/cursor_pointer.png'), auto; */
 }
 
-h1,
-h2 {
+a {
+  color: #008080;
+  text-decoration: none;
+
+  > svg {
+    color: var(--medium-grey);
+  }
+}
+
+h1, h2 {
   font-weight: 300;
   font-size: 34px;
   line-height: 115%;
@@ -69,21 +79,21 @@ h2 {
   flex-direction: column;
   justify-content: center;
   height: 100vh;
-}
 
-.app-container h3 {
-  max-width: 1200px;
-  margin: 15px auto;
-}
+  h3 {
+    max-width: 1200px;
+    margin: 15px auto;
 
-.app-container h3:first-of-type {
-  margin: 25px 0 0;
-}
+    &:first-of-type {
+      margin: 25px 0 0;
+    }
+  }
 
-.app-container > div {
-  display: flex;
-  flex-flow: column wrap;
-  align-items: center;
+  > div {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+  }
 }
 
 ul.answers {
@@ -91,27 +101,30 @@ ul.answers {
   padding-left: 0;
   margin-top: 0;
   width: 100%;
+
   /* max-width: 500px; */
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   gap: 25px;
-}
 
-ul.answers > * {
-  padding: .6em 1.5em;
-  flex: 0 1 calc(50% - 50px);
+  > * {
+    padding: .6em 1.5em;
+    flex: 0 1 calc(50% - 50px);
+  }
+
+  :nth-child(3), :nth-child(4) {
+    margin-top: 12.5px;
+  }
+
+  :nth-child(1), :nth-child(2) {
+    margin-bottom: -12.5px;
+  }
 }
 
 /* even row */
-ul.answers :nth-child(3), ul.answers :nth-child(4) {
-  margin-top: 12.5px;
-}
 
 /* odd row */
-ul.answers :nth-child(1), ul.answers :nth-child(2) {
-margin-bottom: -12.5px;
-}
 
 /*li {
   font-size: 1em;
@@ -125,19 +138,17 @@ margin-bottom: -12.5px;
   padding-bottom: 56.25%;
   overflow: hidden;
   margin-bottom: 25px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
-.video-question iframe {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-li,
-button,
-input {
+li, button, input {
   font-family: menuFont;
   display: block;
   font-size: 16px;
@@ -145,7 +156,9 @@ input {
   line-height: 1.3;
   padding: 0.6em 1.4em 0.5em 0.8em;
   width: 100%;
-  max-width: 100%; /* useful when width is set to anything other than 100% */
+  max-width: 100%;
+
+  /* useful when width is set to anything other than 100% */
   box-sizing: border-box;
   margin: 0;
   margin-top: 1em;
@@ -157,8 +170,7 @@ input {
   background-color: #fff;
 }
 
-li,
-button {
+li, button {
   cursor: pointer;
   background-color: white;
   color: #222;
@@ -166,6 +178,7 @@ button {
 
 /* Selects */
 /* class applies to select element itself, not a wrapper element */
+
 select {
   font-family: menuFont;
   display: block;
@@ -174,7 +187,9 @@ select {
   line-height: 1.3;
   padding: 0.6em 1.4em 0.5em 0.8em;
   width: 100%;
-  max-width: 100%; /* useful when width is set to anything other than 100% */
+  max-width: 100%;
+
+  /* useful when width is set to anything other than 100% */
   box-sizing: border-box;
   margin: 0;
   margin-top: 1em;
@@ -185,90 +200,112 @@ select {
   appearance: none;
   background-color: #fff;
   cursor: pointer;
+
   /* note: bg image below uses 2 urls. The first is an svg data uri for the arrow icon, and the second is the gradient. 
     for the icon, if you want to change the color, be sure to use `%23` instead of `#`, since it's a url. You can also swap in a different svg icon or an external image reference
     
   */
   background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E');
   background-repeat: no-repeat;
+
   /* arrow icon position (1em from the right, 50% vertical) , then gradient position*/
   background-position: right 0.7em top 50%;
+
   /* icon size, then gradient */
   background-size: 0.65em auto;
+
+  &::-ms-expand {
+    display: none;
+  }
+
+  &:hover {
+    border-color: #888;
+  }
+
+  &:focus {
+    border-color: #aaa;
+
+    /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+    box-shadow: 0 0 0 3px -moz-mac-focusring;
+    color: #222;
+    outline: none;
+  }
+
+  option {
+    font-weight: normal;
+  }
 }
+
 /* Hide arrow icon in IE browsers */
-select::-ms-expand {
-  display: none;
-}
+
 /* Hover style */
-select:hover {
-  border-color: #888;
-}
+
 /* Focus style */
-select:focus {
-  border-color: #aaa;
-  /* It'd be nice to use -webkit-focus-ring-color here but it doesn't work on box-shadow */
-  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
-  box-shadow: 0 0 0 3px -moz-mac-focusring;
-  color: #222;
-  outline: none;
-}
 
 /* Set options to normal weight */
-select option {
-  font-weight: normal;
-}
 
 /* Support for rtl text, explicit support for Arabic and Hebrew */
-*[dir='rtl'] select,
-:root:lang(ar) select,
-:root:lang(iw) select {
+
+*[dir='rtl'] select {
   background-position: left 0.7em top 50%, 0 0;
   padding: 0.6em 0.8em 0.5em 1.4em;
 }
 
+:root {
+  &:lang(ar) select, &:lang(iw) select {
+    background-position: left 0.7em top 50%, 0 0;
+    padding: 0.6em 0.8em 0.5em 1.4em;
+  }
+}
+
 /* Disabled styles */
-select:disabled,
-select[aria-disabled='true'] {
-  color: graytext;
-  background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'),
-    linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+
+select {
+  &:disabled, &[aria-disabled='true'] {
+    color: graytext;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22graytext%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'), linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  }
+
+  &:disabled:hover, &[aria-disabled='true'] {
+    border-color: #aaa;
+  }
 }
 
-select:disabled:hover,
-select[aria-disabled='true'] {
-  border-color: #aaa;
-}
+li {
+  &:hover {
+    background-color: white;
+    color: #772139;
+  }
 
-li:hover {
-  background-color: white;
-  color: #772139;
-}
+  &.correct {
+    background-color: rgb(53, 212, 53);
+  }
 
-li.correct {
-  background-color: rgb(53, 212, 53);
-}
-
-li.selected:not(correct) {
-  background-color: rgb(206, 58, 58);
+  &.selected:not(correct) {
+    background-color: rgb(206, 58, 58);
+  }
 }
 
 /* Video Container */
-.vid-container > div {
-  position: fixed;
-  background: #000;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: -99;
-}
 
-.vid-container iframe {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  z-index: -99;
+.vid-container {
+  > div {
+    position: fixed;
+    background: #000;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -99;
+  }
+
+  iframe {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: -99;
+  }
 }
 
 .off {
@@ -284,14 +321,14 @@ li.selected:not(correct) {
   top: 20px;
   right: 20px;
   z-index: 100;
-}
 
-.options-button > button {
-  background: var(--dark-mode-bg);
-  font-family: menuFont;
-  font-size: 1em;
-  letter-spacing: .1em;
-  color: #fff;
+  > button {
+    background: var(--dark-mode-bg);
+    font-family: menuFont;
+    font-size: 1em;
+    letter-spacing: .1em;
+    color: #fff;
+  }
 }
 
 /* Mui Additional Styles */
@@ -300,27 +337,36 @@ li.selected:not(correct) {
   font-family: menuFont !important;
 }
 
-[class^="MuiAlert-message"] {margin: auto;}
+[class^="MuiAlert-message"] {
+  margin: auto;
+}
 
-[class^="MuiCollapse"] [class^="MuiAlert-action"] {margin-left: 0;}
+[class^="MuiCollapse"] [class^="MuiAlert-action"] {
+  margin-left: 0;
+}
 
 /*----Media Queries----*/
 @media screen and (min-width: 1500px) {
   li, button, input, select {
     font-size: 25px;
   }
+
   .app-container li {
     max-width: 450px;
     margin-top: 1em;
   }
+
   h3 {
     font-size: 1.5vw;
   }
+
   h1, h2 {
     font-size: 45px;
   }
 
-  .app-container div {font-size: 35px;}
+  .app-container div {
+    font-size: 35px;
+  }
 }
 
 @media screen and (max-width: 780px) {
@@ -334,12 +380,14 @@ li.selected:not(correct) {
   ul.answers {
     flex-flow: column nowrap;
     align-items: center;
+
+    > * {
+      flex-basis: 100%;
+      width: 85%;
+      margin: 0 !important;
+    }
   }
-  ul.answers > * {
-    flex-basis: 100%;
-    width: 85%;
-    margin: 0 !important;
-  }
+
   .app-container {
     width: 100%;
   }

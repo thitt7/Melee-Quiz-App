@@ -4,12 +4,14 @@ import { styled, alpha } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 import Menu, { MenuProps } from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import EditIcon from '@mui/icons-material/Edit';
+import InfoIcon from '@mui/icons-material/Info';
+import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import Divider from '@mui/material/Divider';
 import ScoreboardIcon from '@mui/icons-material/Scoreboard';
 import HomeIcon from '@mui/icons-material/Home';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
-import FormModal from './FormModal';
+import FormModal from './FormModal'
+import ContactModal from './ContactModal';
 
 /* Options Menu */
 const StyledMenu = styled((props: MenuProps) => (
@@ -55,18 +57,28 @@ const StyledMenu = styled((props: MenuProps) => (
 
 export default function OptionsMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [opened, setOpened] = useState(false)
+  const [formOpened, setFormOpened] = useState(false)
+  const [contactOpened, setContactOpened] = useState(false)
   const open = Boolean(anchorEl);
 
   const dispatch = useDispatch()
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
-  };
+  }
   const handleClose = (e: { target: any; }) => {
     setAnchorEl(null);
-    e.target.innerText == "Suggestions" ? setOpened(true) : setOpened(false)
-  };
+  }
+
+  const handleQuestion = (event: React.MouseEvent<HTMLElement>) => {
+    setFormOpened(true)
+    setAnchorEl(null)
+  }
+
+  const handleContact = (event: React.MouseEvent<HTMLElement>) => {
+    setContactOpened(true)
+    setAnchorEl(null)
+  }
 
   const reset = () =>
   {
@@ -117,12 +129,18 @@ export default function OptionsMenu() {
           <ScoreboardIcon />
           Scores
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <EditIcon />
-          Suggestions
+        <MenuItem onClick={handleQuestion} disableRipple>
+          <QuestionMarkIcon />
+          Submit A Question
+        </MenuItem>
+        <MenuItem onClick={handleContact} disableRipple>
+          <InfoIcon />
+          About
         </MenuItem>
       </StyledMenu>
-      <FormModal setOpened={setOpened} open={opened}/>
+      
+      <FormModal setFormOpened={setFormOpened} open={formOpened}/>
+      <ContactModal setContactOpened={setContactOpened} open={contactOpened}/>
     </div>
   );
 }
