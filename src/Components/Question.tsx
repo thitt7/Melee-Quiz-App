@@ -15,7 +15,9 @@ function Question() {
   const question = questions[questionIndex]
   const options = question.answers
   const answer = question.correct_answer
-  const incorrect_answers = question.answers.filter((val: object) => val != answer)
+  const incorrect_answers = question.answers.filter(
+    (val: object) => val != answer
+  )
 
   const handleListItemClick = (event: any) => {
     dispatch({
@@ -24,6 +26,18 @@ function Question() {
     })
     setSelectedAnswer(event.target.textContent)
 
+    if (event.target.textContent === 'Skip') {
+      dispatch({
+        type: 'SET_ANSWERED',
+        answered: false,
+      })
+      setSelectedAnswer(null)
+      dispatch({
+        type: 'SET_INDEX',
+        index: questionIndex + 1,
+      })
+    }
+
     if (event.target.textContent === answer) {
       dispatch({
         type: 'SET_SCORE',
@@ -31,7 +45,10 @@ function Question() {
       })
     }
 
-    if (question.type != "Guess That Player" && questionIndex + 1 <= questions.length) {
+    if (
+      question.type != 'Guess That Player' &&
+      questionIndex + 1 <= questions.length
+    ) {
       setTimeout(() => {
         dispatch({
           type: 'SET_ANSWERED',
@@ -49,23 +66,20 @@ function Question() {
 
   const getClass = (option: string) => {
     if (!answerSelected) {
-      return ``;
+      return ``
     }
-
 
     if (answerSelected) {
-    if (option === answer) {
-      return `correct off`
+      if (option === answer) {
+        return `correct off`
+      }
+
+      if (option === selectedAnswer) {
+        return `selected off`
+      } else {
+        return 'off'
+      }
     }
-
-    if (option === selectedAnswer) {
-      return `selected off`
-    }
-
-    else {return 'off'}
-
-  }
-
   }
 
   if (!question) {
@@ -76,14 +90,25 @@ function Question() {
     <div>
       <h3>Question {questionIndex + 1}</h3>
       <h3>{question.question}</h3>
-      {question.type=="Guess That Player" ? <VideoQuestion/> : ''}
+      {question.type == 'Guess That Player' ? <VideoQuestion /> : ''}
       <ul className="answers">
         {options.map((option: string, i: number) => (
-          <li key={i} onClick={handleListItemClick} className={getClass(option)}>
+          <li
+            key={i}
+            onClick={handleListItemClick}
+            className={getClass(option)}
+          >
             {option}
           </li>
         ))}
       </ul>
+      {question.type == 'Guess That Player' ? (
+        <ul className="answers">
+          <li onClick={handleListItemClick}>Video stuck buffering? Skip</li>
+        </ul>
+      ) : (
+        ''
+      )}
       <div>
         Score: {score} / {questions.length}
       </div>
