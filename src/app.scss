@@ -333,16 +333,20 @@ li {
 
 /* Mui Additional Styles */
 
-.MuiDialog-container * {
+[class*=Mui] {
   font-family: menuFont !important;
-}
 
-[class^="MuiAlert-message"] {
-  margin: auto;
-}
-
-[class^="MuiCollapse"] [class^="MuiAlert-action"] {
-  margin-left: 0;
+  .MuiDialog-container * {
+    font-family: menuFont !important;
+  }
+  
+  [class^="MuiAlert-message"] {
+    margin: auto;
+  }
+  
+  [class^="MuiCollapse"] [class^="MuiAlert-action"] {
+    margin-left: 0;
+  }
 }
 
 /*----Media Queries----*/

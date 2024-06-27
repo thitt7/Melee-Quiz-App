@@ -11,20 +11,21 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "git": "^0.1.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-redux": "^7.2.2",
-    "react-scripts": "4.0.1",
+    "react-scripts": "^5.0.1",
     "react-youtube": "^10.0.0",
     "redux": "^4.0.5",
     "redux-persist": "^6.0.0",
     "sass": "^1.55.0",
     "serve": "^14.0.1",
+    "typescript": "^5.5.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -47,6 +48,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/react": "^18.0.21",
     "@types/react-redux": "^7.1.24",
     "prettier": "2.2.1"

@@ -44,10 +44,10 @@ export default function ContactModal(props: any) {
           align='center'
           sx={{marginBottom: 4 }}
           >
-            This is a passion project of mine made possible not only from input by the people that use it, but by the elegant libraries it's built on, namely <a target="_blank" href="https://reactjs.org/">ReactJS </a> 
-            and <a target="_blank" href="https://mui.com/">Material UI</a>. I've used to create it, with help from content provided by YouTuber <a target="_blank" href="https://www.youtube.com/c/Frudgey">Frudgey</a>. 
-            Everything is still ultimately a work in progress and I am open to any and all suggestions you may have. I would also note that I am looking to collaborate with a graphic designer to add a 
-            little more flair to the UI and give it an even more classic Melee feel so if that sounds like you, then please drop me a line so we can work together. Feel free to reach out to me on any of the platforms listed below.
+            This is a passion project of mine, close to my heart because it's my first real project that got me into React.js. It's made possible not only from input by the people that use it, but by the elegant libraries it's built on, namely <a target="_blank" href="https://reactjs.org/">ReactJS </a> 
+            and <a target="_blank" href="https://mui.com/">Material UI</a>. I built it with help from content provided by YouTuber <a target="_blank" href="https://www.youtube.com/c/Frudgey">Frudgey</a> who is awesome. 
+            I am open to any and all suggestions you may have. I am also always on the lookout to collaborate with a designer to add some more custom UI features that closely resemble the UI of Melee itself.
+             If that sounds like you, then please drop me a line so we can work together. Feel free to reach out to me on any of the platforms listed below.
           </DialogContentText>
           <Box
             sx={{

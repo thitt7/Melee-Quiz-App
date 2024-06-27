@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect, useRef, ChangeEvent} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import Collapse from '@mui/material/Collapse'
 import Alert from '@mui/material/Alert'
@@ -47,9 +47,10 @@ export default function FormModal(props: any) {
     })
   }
 
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const inputChangeHandler = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     let {name, value} = event.target
      setFormData({...formData, [name]: value})
+     console.log(formData)
      if (formData.type == "Multiple Choice") {setFormData({...formData,  answer3: "", answer4: ""})}
   }
   const submitHandler = (event: React.MouseEvent<HTMLElement>) => {
